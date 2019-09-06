@@ -1,0 +1,40 @@
+{
+  "min_packer_version": "1.4.2",
+  "variables": {
+    "aws_region": "ap-northeast-1",
+    "aws_profile": "{{env `AWS_PROFILE`}}"
+  },
+  "builders": [
+    {
+      "ami_name": "ubuntu-microk8s-{{isotime | clean_ami_name}}",
+      "ami_description": "An Ubuntu AMI that has microk8s installed.",
+      "profile": "{{user `aws_profile`}}",
+      "instance_type": "t2.micro",
+      "name": "ubuntu-ami",
+      "region": "{{user `aws_region`}}",
+      "type": "amazon-ebs",
+      "associate_public_ip_address": true,
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
+          "root-device-type": "ebs"
+        },
+        "owners": [
+          "099720109477"
+        ],
+        "most_recent": true
+      },
+      "ssh_username": "ubuntu"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "{{template_dir}}/setup_ubuntu.sh",
+      "only": [
+        "ubuntu-ami"
+      ]
+    }
+  ]
+}
