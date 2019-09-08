@@ -3,3 +3,18 @@ build:
 
 apply:
 	terraform apply
+
+deploy-sample:
+	./bin/deploy-sample
+
+ssh:
+	./bin/ssh
+
+show-ip:
+	@./bin/ip
+
+show-sample-url:
+	@echo "http://$$(./bin/ip):$$(./bin/get-node-port hello-node)"
+
+open-sample-url:
+	@open "http://$$(./bin/ip):$$(./bin/get-node-port hello-node)"

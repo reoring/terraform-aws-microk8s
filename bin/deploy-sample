@@ -1,0 +1,6 @@
+#!/bin/bash
+
+./bin/command /snap/bin/kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
+./bin/command /snap/bin/kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+
+./bin/command /snap/bin/kubectl get svc | grep hello-node
