@@ -1,4 +1,6 @@
-# terraform-aws-microk8s
+# MicroK8s on AWS by Terraform
+
+You can easily deploy MicroK8s environment on AWS by terraform.
 
 ## Build image that included microk8s
 
