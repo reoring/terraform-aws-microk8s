@@ -1,0 +1,2 @@
+admin_ip   = "{admin_ip}/32"
+aws_region = "ap-northeast-1"
