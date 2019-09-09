@@ -4,6 +4,9 @@ build:
 generate-tfvars:
 	bin/generate-tfvars
 
+plan:
+	terraform plan
+
 deploy:
 	terraform apply
 
@@ -21,3 +24,6 @@ show-sample-url:
 
 open-sample-url:
 	@open "http://$$(./bin/ip):$$(./bin/get-node-port hello-node)"
+
+destroy:
+	terraform destroy
